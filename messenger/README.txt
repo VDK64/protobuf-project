@@ -1,0 +1,1 @@
+To access the h2 database enter path: jdbc:h2:mem:testdb

@@ -1,7 +1,7 @@
 package com.example.messengerclient;
 
 import com.example.demo.Description;
-import com.example.demo.MessengerGrpc;
+import com.example.demo.MessageVerifierGrpc;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
@@ -12,16 +12,16 @@ import java.util.UUID;
 @Component
 public class MessageScheduler {
 
-    private final MessengerGrpc.MessengerBlockingStub stub;
+    private final MessageVerifierGrpc.MessageVerifierBlockingStub stub;
 
     @Autowired
-    public MessageScheduler(MessengerGrpc.MessengerBlockingStub stub) {
+    public MessageScheduler(MessageVerifierGrpc.MessageVerifierBlockingStub stub) {
         this.stub = stub;
     }
 
     @Scheduled(cron = "*/3 * * * * *")
     public void messageScheduler() {
-        stub.sendMessage(Description.Message.newBuilder()
+        stub.verifyMessage(Description.Message.newBuilder()
                 .setPayload(generateString())
                 .setRqId(UUID.randomUUID().getMostSignificantBits() & Long.MAX_VALUE)
                 .setFrom("9772223344")
