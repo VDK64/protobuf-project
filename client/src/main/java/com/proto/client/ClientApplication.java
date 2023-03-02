@@ -24,7 +24,6 @@ public class ClientApplication implements CommandLineRunner {
         MessengerGrpc.MessengerBlockingStub stub = MessengerGrpc.newBlockingStub(channel);
         Description.Message message = Description.Message.newBuilder().setFrom("me").setRqId(15).build();
         Empty empty = stub.sendMessage(message);
-        System.out.println(empty);
     }
 
 }
