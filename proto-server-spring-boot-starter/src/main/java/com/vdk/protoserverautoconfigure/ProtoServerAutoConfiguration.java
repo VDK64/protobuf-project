@@ -23,12 +23,11 @@ public class ProtoServerAutoConfiguration {
     @Autowired
     private final ProtoServerAutoConfigurationProperties properties;
 
-    @Autowired/*(required = false)*/
+    @Autowired(required = false)
     public ProtoServerAutoConfiguration(List<BindableService> services, ProtoServerAutoConfigurationProperties properties) {
         this.services = services;
         this.properties = properties;
     }
-
 
     @Bean
     @ConditionalOnMissingBean
