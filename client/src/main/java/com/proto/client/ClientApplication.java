@@ -20,8 +20,8 @@ public class ClientApplication implements CommandLineRunner {
     public void run(String... args) throws Exception {
         ManagedChannel channel = ManagedChannelBuilder.forTarget("localhost:8080")
                 .usePlaintext().build();
-
         MessengerGrpc.MessengerBlockingStub stub = MessengerGrpc.newBlockingStub(channel);
+
         Description.Message message = Description.Message.newBuilder().setFrom("me").setRqId(15).build();
         Empty empty = stub.sendMessage(message);
     }
